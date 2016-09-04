@@ -1,0 +1,23 @@
+<h1>
+    <label>
+        Name:
+        <span ng-bind="name" ng-if="!editMode"></span>
+        <input ng-model="new.name" type="text" ng-if="editMode" />
+    </label>
+</h1>
+<h2>
+    <label>
+        Manager: <span ng-bind="manager" ng-if="!editMode"></span>
+        <input ng-model="new.manager" type="text" ng-if="editMode" />
+    </label>
+</h2>
+<h2>
+    <label>
+        Phone: <span ng-bind="phone" ng-if="!editMode"></span>
+        <input ng-model="new.phone" type="text" class="phoneInput" ng-if="editMode" />
+    </label>
+</h2>
+<button class="btn btn-primary" ng-click="editFirm()" ng-if="!editMode">Edit</button>
+<button class="btn btn-danger" ng-click="deleteFirm()" ng-if="!editMode">Delete</button>
+<button class="btn btn-danger" ng-click="cancelEditing()" ng-if="editMode">Cancel</button>
+<button class="btn btn-success" ng-click="submitEditing(new)" ng-if="editMode">Done</button>

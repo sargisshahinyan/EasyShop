@@ -1,0 +1,27 @@
+<h2>Add Item</h2>
+<label>Name: <input ng-model="name" type="text"/></label><br/><br/>
+<label>Category:
+    <select ng-model="category">
+        <option value="" disabled selected>Select category</option>
+        <option ng-repeat="category in categories" value="{{category.ID}}" ng-bind="category.Category"></option>
+    </select>
+</label><br/><br/>
+<label>Sale Price: <input ng-model="salePrice" type="number"/></label><br/><br/>
+<label>Firm:
+    <select ng-model="firm">
+        <option value="" disabled selected>Select firm</option>
+        <option ng-repeat="firm in firms" value="{{firm.ID}}" ng-bind="firm.Name"></option>
+    </select>
+</label><br/><br/>
+<label>Measurement unit: <input ng-model="measurementUnit" type="text"/></label><br/><br/>
+<button  class="btn btn-primary" ng-click="addItem()">Add</button>
+<ul class="list-group categories">
+    <li class="list-group-item" ng-repeat="item in items" id="item.ID">
+        <a href="#/item/{{item.ID}}">
+            <span ng-bind="item.Name"></span>
+        </a>
+        <span class="category-delete-button">
+            <button class="btn btn-default" type="button" ng-click="deleteItem(item.ID)">X</button>
+        </span>
+    </li>
+</ul>

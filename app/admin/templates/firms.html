@@ -1,0 +1,15 @@
+<h2>Add Firm</h2>
+<label>Firm Name: <input ng-model="firmName" type="text"/></label><br/><br/>
+<label>Manager Name: <input ng-model="managerName" type="text"/></label><br/><br/>
+<label>Phone: <input ng-model="phone" type="text" class="phoneInput"/></label><br/><br/>
+<button  class="btn btn-primary" ng-click="addFirm()">Add</button>
+<ul class="list-group categories">
+    <li class="list-group-item" ng-repeat="firm in firms" id="firm.ID">
+        <a href="#/firm/{{firm.ID}}">
+            <span ng-bind="firm.Name"></span>
+        </a>
+        <span class="category-delete-button">
+            <button class="btn btn-default" type="button" ng-click="deleteFirm(firm.ID)">X</button>
+        </span>
+    </li>
+</ul>

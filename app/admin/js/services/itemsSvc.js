@@ -1,0 +1,52 @@
+/**
+ * Created by Sargis on 8/21/2016.
+ */
+angular.module("myApp.services")
+    .factory("itemsSvc", ["$http", function ($http) {
+        return {
+            getItem: function (id) {
+                return $http({
+                    method: "GET",
+                    url: "/store/item/" + id
+                });
+            },
+            getItems: function () {
+                return $http({
+                    method: "GET",
+                    url: "/store/item/"
+                });
+            },
+            addItem: function (item) {
+                return $http({
+                    method: "POST",
+                    url: "/store/item/",
+                    data: {
+                        name: item.name,
+                        firm: item.firm,
+                        salePrice: item.salePrice,
+                        category: item.category,
+                        measurementUnit: item.measurementUnit
+                    }
+                });
+            },
+            editItem: function (item) {
+                return $http({
+                    method: "PUT",
+                    url: "/store/item/" + item.id,
+                    data: {
+                        name: item.name,
+                        firm: item.firm,
+                        salePrice: item.salePrice,
+                        category: item.category,
+                        measurementUnit: item.measurementUnit
+                    }
+                });
+            },
+            deleteItem: function (id) {
+                return $http({
+                    method: "DELETE",
+                    url: "/store/item/" + id
+                });
+            }
+        };
+    }]);

@@ -1,0 +1,12 @@
+<label>Add Category: <input ng-model="newCategory" type="text" placeholder="Category Name" /></label>
+<button  class="btn btn-primary" ng-click="addCategory()">Add</button>
+<ul class="list-group categories">
+    <li class="list-group-item" ng-repeat="category in categories" id="category.ID">
+        <a href="#/category/{{category.ID}}">
+            <span ng-bind="category.Category"></span>
+        </a>
+        <span class="category-delete-button">
+            <button class="btn btn-default" type="button" ng-click="deleteCategory(category.ID)">X</button>
+        </span>
+    </li>
+</ul>

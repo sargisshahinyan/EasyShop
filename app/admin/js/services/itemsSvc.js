@@ -7,24 +7,24 @@ angular.module("myApp.services")
             getItem: function (id) {
                 return $http({
                     method: "GET",
-                    url: "/store/item/" + id
+                    url: "/store/items/" + id
                 });
             },
             getItems: function () {
                 return $http({
                     method: "GET",
-                    url: "/store/item/"
+                    url: "/store/items/"
                 });
             },
             addItem: function (item) {
                 return $http({
                     method: "POST",
-                    url: "/store/item/",
+                    url: "/store/items/",
                     data: {
                         name: item.name,
-                        firm: item.firm,
+                        firm: +item.firm,
                         salePrice: item.salePrice,
-                        category: item.category,
+                        category: +item.category,
                         measurementUnit: item.measurementUnit
                     }
                 });
@@ -32,7 +32,7 @@ angular.module("myApp.services")
             editItem: function (item) {
                 return $http({
                     method: "PUT",
-                    url: "/store/item/" + item.id,
+                    url: "/store/items/" + item.id,
                     data: {
                         name: item.name,
                         firm: item.firm,
@@ -45,7 +45,7 @@ angular.module("myApp.services")
             deleteItem: function (id) {
                 return $http({
                     method: "DELETE",
-                    url: "/store/item/" + id
+                    url: "/store/items/" + id
                 });
             }
         };

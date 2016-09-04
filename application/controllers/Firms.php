@@ -7,16 +7,16 @@
  */
 require(APPPATH.'/libraries/REST_Controller.php');
 
-class Firm extends REST_Controller   {
+class Firms extends REST_Controller   {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("firms");
+        $this->load->model("firm");
     }
 
     public function index_get($id = null) {
         if(!$id) {
-            $firms = $this->firms->get_firms();
+            $firms = $this->firm->get_firms();
 
             if($firms) {
                 $this->response($firms);
@@ -27,7 +27,7 @@ class Firm extends REST_Controller   {
             return;
         }
 
-        $firm = $this->firms->get_firm($id);
+        $firm = $this->firm->get_firm($id);
 
         if(!$firm) {
             $this->response([], 404);
@@ -46,7 +46,7 @@ class Firm extends REST_Controller   {
             return;
         }
 
-        $this->response($this->firms->add_firm($name, $manager, $phone), 201);
+        $this->response($this->firm->add_firm($name, $manager, $phone), 201);
     }
 
     public function index_put ($id = null) {
@@ -66,7 +66,7 @@ class Firm extends REST_Controller   {
             return;
         }
 
-        $this->response($this->firms->edit_firm($id, $name, $manager, $phone));
+        $this->response($this->firm->edit_firm($id, $name, $manager, $phone));
     }
 
     public function index_delete ($id = null) {
@@ -75,7 +75,7 @@ class Firm extends REST_Controller   {
             return;
         }
 
-        $this->firms->delete_firm($id);
+        $this->firm->delete_firm($id);
         $this->response(true);
     }
 
@@ -85,7 +85,7 @@ class Firm extends REST_Controller   {
             return;
         }
 
-        $firms = $this->firms->get_firms($page);
+        $firms = $this->firm->get_firms($page);
 
         if(!$firms) {
             $this->response([], 404);

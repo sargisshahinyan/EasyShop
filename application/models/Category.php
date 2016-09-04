@@ -6,7 +6,7 @@
  * Time: 11:04 PM
  */
 
-class Categories extends CI_Model {
+class Category extends CI_Model {
     public function __construct()
     {
         parent::__construct();

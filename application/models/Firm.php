@@ -6,7 +6,7 @@
  * Time: 12:52 AM
  */
 
-class Firms extends  CI_Model {
+class Firm extends  CI_Model {
     public function __construct()
     {
         parent::__construct();

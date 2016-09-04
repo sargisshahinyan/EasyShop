@@ -8,12 +8,6 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
-/vendor/
-
 # IDE Files
 #-------------------------
 /nbproject/
@@ -23,7 +17,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 !.gitkeep
 
 app/bower_components/
-tmp
 
 ## Sublime Text cache files
 *.tmlanguage.cache

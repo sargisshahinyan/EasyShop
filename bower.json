@@ -8,8 +8,6 @@
   "dependencies": {
     "angular": "latest",
     "angular-route": "latest",
-    "angular-loader": "latest",
-    "angular-mocks": "latest",
     "html5-boilerplate": "latest",
     "jquery": "latest",
     "bootstrap": "latest",

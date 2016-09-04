@@ -6,7 +6,7 @@ angular.module("myApp.services").factory("categoriesSvc", ["$http", "$rootScope"
         addCategory: function (category) {
             return $http({
                 method: "POST",
-                url: "/store/category/",
+                url: "/store/categories/",
                 data: {
                     category: category
                 }
@@ -15,7 +15,7 @@ angular.module("myApp.services").factory("categoriesSvc", ["$http", "$rootScope"
         editCategory: function (category) {
             return $http({
                 method: "PUT",
-                url: "/store/category/" + category.id,
+                url: "/store/categories/" + category.id,
                 data: {
                     category: category.category
                 }
@@ -24,19 +24,19 @@ angular.module("myApp.services").factory("categoriesSvc", ["$http", "$rootScope"
         getCategories: function (pageNumber) {
             return $http({
                 method: "GET",
-                url:"/store/category/"
+                url:"/store/categories/"
             });
         },
         deleteCategory: function (id) {
             return $http({
                 method: "DELETE",
-                url: "/store/category/" + id
+                url: "/store/categories/" + id
             });
         },
         getCategory: function (id) {
             return $http({
                 method: "GET",
-                url: "/store/category/" + id
+                url: "/store/categories/" + id
             });
         }
     };

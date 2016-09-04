@@ -7,13 +7,13 @@ angular.module("myApp.services")
             getFirm: function (id) {
                 return $http({
                     method: "GET",
-                    url: "/store/firm/" + id
+                    url: "/store/firms/" + id
                 });
             },
             addFirm: function (firm) {
                 return $http({
                     method: "POST",
-                    url: "/store/firm/",
+                    url: "/store/firms/",
                     data: {
                         name: firm.name,
                         manager: firm.manager,
@@ -24,7 +24,7 @@ angular.module("myApp.services")
             editFirm: function (firm) {
                 return $http({
                     method: "PUT",
-                    url: "/store/firm/" + firm.id,
+                    url: "/store/firms/" + firm.id,
                     data: {
                         name: firm.name,
                         manager: firm.manager,
@@ -35,13 +35,13 @@ angular.module("myApp.services")
             deleteFirm: function (id) {
                 return $http({
                     method: "DELETE",
-                    url: "/store/firm/" + id
+                    url: "/store/firms/" + id
                 });
             },
             getFirms: function () {
                 return $http({
                     method: "GET",
-                    url: "/store/firm/"
+                    url: "/store/firms/"
                 });
             }
         };

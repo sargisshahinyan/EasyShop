@@ -8,16 +8,16 @@
 
 require(APPPATH.'/libraries/REST_Controller.php');
 
-class Category extends REST_Controller   {
+class Categories extends REST_Controller   {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("categories");
+        $this->load->model("category");
     }
 
     public function index_get($id = null) {
         if(!$id) {
-            $categories = $this->categories->get_categories();
+            $categories = $this->category->get_categories();
 
             if($categories) {
                 $this->response($categories);
@@ -28,7 +28,7 @@ class Category extends REST_Controller   {
             return;
         }
 
-        $category = $this->categories->get_category($id);
+        $category = $this->category->get_category($id);
 
         if(!$category) {
             $this->response([], 404);
@@ -45,7 +45,7 @@ class Category extends REST_Controller   {
             return;
         }
 
-        $this->response($this->categories->add_category($category), 201);
+        $this->response($this->category->add_category($category), 201);
     }
 
     public function index_put ($id = null) {
@@ -63,7 +63,7 @@ class Category extends REST_Controller   {
             return;
         }
 
-        $this->response($this->categories->edit_category($id, $category));
+        $this->response($this->category->edit_category($id, $category));
     }
 
     public function index_delete ($id = null) {
@@ -72,7 +72,7 @@ class Category extends REST_Controller   {
             return;
         }
 
-        $this->categories->delete_category($id);
+        $this->category->delete_category($id);
         $this->response(true);
     }
 
@@ -82,7 +82,7 @@ class Category extends REST_Controller   {
             return;
         }
 
-        $categories = $this->categories->get_categories($page);
+        $categories = $this->category->get_categories($page);
 
         if(!$categories) {
             $this->response([], 404);

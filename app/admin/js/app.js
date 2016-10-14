@@ -59,7 +59,7 @@ config(['$routeProvider', "$httpProvider", function($routeProvider, $httpProvide
     controller:"ItemsCtrl",
     resolve: resolve
   }).when('/item/:id', {
-    templateUrl: "admin/templates/item.html",
+    templateUrl: "admin/templates/itemDet.html",
     controller:"ItemCtrl",
     resolve: resolve
   }).otherwise({redirectTo: '/main'});

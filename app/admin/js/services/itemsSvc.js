@@ -38,7 +38,8 @@ angular.module("myApp.services")
                         firm: item.firm,
                         salePrice: item.salePrice,
                         category: item.category,
-                        measurementUnit: item.measurementUnit
+                        measurementUnit: item.measurementUnit,
+                        quantity: item.quantity
                     }
                 });
             },

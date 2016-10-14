@@ -45,8 +45,9 @@ class Item extends CI_Model
         $sale_price = $item["salePrice"];
         $category = $item["category"];
         $measurementUnit = $item["measurementUnit"];
+        $quantity = $item["quantity"];
 
-        $this->db->query("UPDATE Items SET Name = '$name', FirmID = $firm, SalePrice = $sale_price, CategoryID = $category, MeasurementUnit = '$measurementUnit' WHERE ID = $id");
+        $this->db->query("UPDATE Items SET Name = '$name', FirmID = $firm, SalePrice = $sale_price, CategoryID = $category, Quantity = $quantity, MeasurementUnit = '$measurementUnit' WHERE ID = $id");
 
         return $this->get_item($id);
     }

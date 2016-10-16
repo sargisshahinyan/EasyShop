@@ -16,7 +16,7 @@ angular.module("myApp.services")
                     url: "/store/items/"
                 });
             },
-            addItem: function (item) {
+            createItem: function (item) {
                 return $http({
                     method: "POST",
                     url: "/store/items/",
@@ -34,6 +34,7 @@ angular.module("myApp.services")
                     method: "PUT",
                     url: "/store/items/" + item.id,
                     data: {
+                        action: "edit",
                         name: item.name,
                         firm: item.firm,
                         salePrice: item.salePrice,
@@ -47,6 +48,17 @@ angular.module("myApp.services")
                 return $http({
                     method: "DELETE",
                     url: "/store/items/" + id
+                });
+            },
+            addItem: function (item) {
+                return $http({
+                    method: "PUT",
+                    url: "/store/items/" + item.id,
+                    data: {
+                        action: "add",
+                        quantity: item.quantity,
+                        unitPrice: item.unitPrice
+                    }
                 });
             }
         };

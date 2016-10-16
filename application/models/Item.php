@@ -26,14 +26,15 @@ class Item extends CI_Model
         return isset($items[0]) ? $items : null;
     }
 
-    public function add_item($item) {
+    public function create_item($item) {
+        $ID = $item["ID"];
         $name = $item["name"];
         $firm = $item["firm"];
         $sale_price = $item["salePrice"];
         $category = $item["category"];
         $measurementUnit = $item["measurementUnit"];
 
-        $this->db->query("INSERT INTO Items VALUES (null, '$name', $firm, $sale_price, $category, 0,'$measurementUnit')");
+        $this->db->query("INSERT INTO Items VALUES ($ID, '$name', $firm, $sale_price, $category, 0,'$measurementUnit')");
         $id = $this->db->insert_id();
 
         return $this->get_item($id);
@@ -52,7 +53,14 @@ class Item extends CI_Model
         return $this->get_item($id);
     }
 
+    public function add_item($id, $item) {
+        $quantity = $item["quantity"];
+        $unitPrice = $item["unitPrice"];
+
+        return $this->db->query("INSERT INTO DerivedItems (ItemID, Quantity, UnitPrice) VALUES ($id, $quantity, $unitPrice)");
+    }
+
     public function delete_item($id) {
-        $this->db->query("DELETE FROM Items WHERE ID = $id");
+        return $this->db->query("DELETE FROM Items WHERE ID = $id");
     }
 }

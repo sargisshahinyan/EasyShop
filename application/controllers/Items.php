@@ -40,49 +40,73 @@ class Items extends REST_Controller
     }
 
     public function index_post ($id = null) {
-        $item = array();
+        if(empty($this->post("action"))) {
+            $this->response("Action is not defined", 403);
+            return;
+        }
 
-        $item["name"] = $this->post("name");
-        $item["firm"] = $this->post("firm");
-        $item["salePrice"] = $this->post("salePrice");
-        $item["category"] = $this->post("category");
-        $item["measurementUnit"] = $this->post("measurementUnit");
+        $item["ID"] = trim($this->post("ID"));
+        $item["name"] = trim($this->post("name"));
+        $item["firm"] = trim($this->post("firm"));
+        $item["salePrice"] = trim($this->post("salePrice"));
+        $item["category"] = trim($this->post("category"));
+        $item["measurementUnit"] = trim($this->post("measurementUnit"));
 
-        foreach ($item as $prop) {
-            if(!isset($prop)) {
-                $this->response("hey hey hey", 404);
+        foreach ($item as $key => $prop) {
+            if(empty($prop)) {
+                $this->response("$key is not defined", 403);
                 return;
             }
         }
 
-        $this->response($this->item->add_item($item), 201);
+        $this->response($this->item->create_item($item), 201);
     }
 
     public function index_put ($id = null) {
         if(!$id) {
-            $this->response([], 404);
+            $this->response("No item selected", 403);
             return;
         }
 
-        parse_str(file_get_contents("php://input"),$data);
+        parse_str(file_get_contents("php://input"),$item);
 
-        foreach ($data as $prop) {
-            if(!isset($prop)) {
-                $this->response([], 404);
+        if(empty($item["action"])) {
+            $this->response("Action is not defined", 403);
+            return;
+        }
+
+        foreach ($item as $key => $prop) {
+            if(empty($prop)) {
+                $this->response("$key is not defined", 403);
                 return;
             }
         }
 
-        $this->response($this->item->edit_item($id, $data));
+        switch ($item['action']) {
+            case "edit":
+                $this->response($this->item->edit_item($id, $item));
+                break;
+            case "add":
+                if(!$this->item->add_item($id, $item)) {
+                    $this->response("Server error inch vor", 500);
+                } else {
+                    $this->response($this->response($this->item->get_item($id)), 200);
+                }
+
+                break;
+        }
     }
 
     public function index_delete ($id = null) {
         if(!$id) {
-            $this->response([], 404);
+            $this->response("No item selected", 404);
             return;
         }
 
-        $this->item->delete_item($id);
-        $this->response(true);
+        if(!$this->item->delete_item($id)) {
+            $this->response("Server error inch vor", 500);
+        } else {
+            $this->response([], 200);
+        }
     }
 }

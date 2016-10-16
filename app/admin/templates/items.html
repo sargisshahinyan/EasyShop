@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4">
-            <h2>Add Item</h2>
+        <div class="col-md-4 text-center">
+            <h2>Create Item</h2>
+            <label>ID: <input ng-model="ID" type="number"/></label><br/><br/>
             <label>Name: <input ng-model="name" type="text"/></label><br/><br/>
             <label>Category:
                 <select ng-model="category">
@@ -17,12 +18,17 @@
                 </select>
             </label><br/><br/>
             <label>Measurement unit: <input ng-model="measurementUnit" type="text"/></label><br/><br/>
+            <button  class="btn btn-primary" ng-click="createItem()">Create</button>
+        </div>
+        <div class="col-md-4 text-center">
+            <h2>Add Item</h2>
+            <label>ID: <input ng-model="addingID" type="number"/></label><br/><br/>
+            <label>Quantity: <input ng-model="addingQuantity" type="number"/></label><br/><br/>
+            <label>UnitPrice: <input ng-model="addingUnitPrice" type="number"/></label><br/><br/>
             <button  class="btn btn-primary" ng-click="addItem()">Add</button>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 text-center"></div>
 
-        </div>
-        <div class="col-md-4"></div>
     </div>
     <div class="row">
         <ul class="list-group categories">

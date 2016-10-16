@@ -9,8 +9,9 @@ angular.module("myApp.controllers")
             });
         };
 
-        $scope.addItem = function () {
-            itemsSvc.addItem({
+        $scope.createItem = function () {
+            itemsSvc.createItem({
+                id: $scope.ID,
                 name: $scope.name,
                 firm: $scope.firm,
                 salePrice: $scope.salePrice,
@@ -19,6 +20,16 @@ angular.module("myApp.controllers")
             }).then(function () {
                 $scope.name = $scope.firm = $scope.salePrice = $scope.category = $scope.measurementUnit = "";
                 getItems();
+            });
+        };
+
+        $scope.addItem = function () {
+            itemsSvc.addItem({
+                id: $scope.addingID,
+                quantity: $scope.addingQuantity,
+                unitPrice: $scope.addingUnitPrice
+            }).then(function (response) {
+                $scope.addingID = $scope.addingQuantity = $scope.addingUnitPrice = "";
             });
         };
 

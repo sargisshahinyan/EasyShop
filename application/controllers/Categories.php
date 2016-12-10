@@ -6,6 +6,8 @@
  * Time: 11:43 PM
  */
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 require(APPPATH.'/libraries/REST_Controller.php');
 
 class Categories extends REST_Controller   {

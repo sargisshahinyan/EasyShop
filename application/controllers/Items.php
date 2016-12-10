@@ -6,6 +6,8 @@
  * Date: 9/4/2016
  * Time: 11:05 PM
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 require(APPPATH.'/libraries/REST_Controller.php');
 
 class Items extends REST_Controller
@@ -40,15 +42,10 @@ class Items extends REST_Controller
     }
 
     public function index_post ($id = null) {
-        if(empty($this->post("action"))) {
-            $this->response("Action is not defined", 403);
-            return;
-        }
-
         $item["ID"] = trim($this->post("ID"));
         $item["name"] = trim($this->post("name"));
         $item["firm"] = trim($this->post("firm"));
-        $item["salePrice"] = trim($this->post("salePrice"));
+        $item["quantity"] = trim($this->post("quantity"));
         $item["category"] = trim($this->post("category"));
         $item["measurementUnit"] = trim($this->post("measurementUnit"));
 

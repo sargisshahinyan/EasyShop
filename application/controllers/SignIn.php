@@ -6,6 +6,8 @@
  * Time: 2:44 PM
  */
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class SignIn extends CI_Controller {
     public function __construct()
     {

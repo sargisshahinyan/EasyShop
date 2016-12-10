@@ -5,6 +5,8 @@
  * Date: 8/22/2016
  * Time: 12:53 AM
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 require(APPPATH.'/libraries/REST_Controller.php');
 
 class Firms extends REST_Controller   {

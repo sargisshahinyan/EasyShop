@@ -30,7 +30,7 @@ class Item extends CI_Model
         $ID = $item["ID"];
         $name = $item["name"];
         $firm = $item["firm"];
-        $sale_price = $item["salePrice"];
+        $sale_price = $item["quantity"];
         $category = $item["category"];
         $measurementUnit = $item["measurementUnit"];
 
@@ -43,7 +43,7 @@ class Item extends CI_Model
     public function edit_item($id, $item) {
         $name = $item["name"];
         $firm = $item["firm"];
-        $sale_price = $item["salePrice"];
+        $sale_price = $item["quantity"];
         $category = $item["category"];
         $measurementUnit = $item["measurementUnit"];
         $quantity = $item["quantity"];

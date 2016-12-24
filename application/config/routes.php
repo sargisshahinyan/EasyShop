@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['categories/(:any)'] = 'categories/index/$1';
 $route['firms/(:any)'] = 'firms/index/$1';
 $route['items/(:any)'] = 'items/index/$1';
+$route['orders/(:any)'] = 'orders/index/$1';

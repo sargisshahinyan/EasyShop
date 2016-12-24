@@ -21,6 +21,12 @@ class Order extends CI_Model {
         return isset($order[0]) ? $order[0] : null;
     }
 
+    public function getOrders() {
+        $order = $this->db->query("SELECT * FROM OrderedItems")->result_array();
+
+        return isset($order[0]) ? $order : null;
+    }
+
     public function addOrder($data) {
         $item = $data["item"];
         $quantity = $data["quantity"];

@@ -57,7 +57,7 @@ class Item extends CI_Model
         $quantity = $item["quantity"];
         $unitPrice = $item["unitPrice"];
 
-        return $this->db->query("INSERT INTO DerivedItems (ItemID, Quantity, UnitPrice) VALUES ($id, $quantity, $unitPrice)");
+        return $this->db->query("INSERT INTO DeliveredItems (ItemID, Quantity, UnitPrice) VALUES ($id, $quantity, $unitPrice)");
     }
 
     public function delete_item($id) {

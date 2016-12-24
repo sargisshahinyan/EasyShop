@@ -4,7 +4,8 @@ angular.module('myApp', [
     'ngCookies',
     "myApp.controllers",
     "myApp.services",
-    "myApp.directives"
+    "myApp.directives",
+    "myApp.filters"
 ]).
 config(['$routeProvider', "$httpProvider", function($routeProvider, $httpProvider) {
   var resolve = {

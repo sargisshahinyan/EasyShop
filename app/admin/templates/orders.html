@@ -3,20 +3,24 @@
         <div class="col-md-4 text-center">
             <h2>Make order</h2>
             <label>Category:
-                <select ng-model="item">
-                    <option value="" disabled selected>Select category</option>
+                <select ng-model="category">
+                    <option value="" disabled selected>Select Category</option>
                     <option ng-repeat="category in categories" value="{{category.ID}}" ng-bind="category.Category"></option>
+                </select>
+            </label><br/><br/>
+            <label>Item:
+                <select ng-model="item">
+                    <option value="" disabled selected>Select Item</option>
+                    <option ng-repeat="item in items | filterByCategory:category" value="{{item.ID}}" ng-bind="item.Name"></option>
                 </select>
             </label><br/><br/>
             <label>Quantity: <input ng-model="quantity" type="number"/></label><br/><br/>
             <button  class="btn btn-primary" ng-click="add()">Create</button>
         </div>
-        <div class="col-md-4 text-center"></div>
-
     </div>
     <div class="row">
         <ul class="list-group categories">
-            <li class="list-group-item" ng-repeat="item in items" id="item.ID">
+            <li class="list-group-item" ng-repeat="item in list" id="item.ID">
                 <a href="#/order/{{item.ID}}">
                     <span ng-bind="item.Name"></span>
                 </a>

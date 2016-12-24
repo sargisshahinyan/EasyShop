@@ -2,7 +2,7 @@
  * Created by Sargis on 8/19/2016.
  */
 angular.module("myApp.controllers")
-    .controller("OrdersCtrl", ["$rootScope", "$scope", "ordersSvc", "itemsSvc", function ($rootScope, $scope, ordersSvc, itemsSvc) {
+    .controller("OrdersCtrl", ["$rootScope", "$scope", "ordersSvc", "itemsSvc","categoriesSvc" , function ($rootScope, $scope, ordersSvc, itemsSvc, categoriesSvc) {
         $scope.delete = function (id) {
             ordersSvc.deleteOrder(id).then(function () {
                 get();
@@ -23,7 +23,15 @@ angular.module("myApp.controllers")
 
         function get() {
             ordersSvc.getOrders().then(function (result) {
-                $scope.items = result.data || [];
+                $scope.list = result.data || [];
             });
         }
+
+        categoriesSvc.getCategories().then(function (response) {
+            $scope.categories = response.data || [];
+        });
+
+        itemsSvc.getItems().then(function (response) {
+            $scope.items = response.data || [];
+        });
     }]);

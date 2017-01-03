@@ -32,7 +32,8 @@ angular.module("myApp.services")
                     method: "PUT",
                     data: {
                         item: order.item,
-                        quantity: order.quantity
+                        quantity: order.quantity,
+                        state: order.state
                     }
                 });
             },

@@ -79,9 +79,10 @@ class Orders extends REST_Controller {
 
         $data["item"] = isset($order["item"]) ? trim($order["item"]) : null;
         $data["quantity"] = isset($order["quantity"]) ? trim($order["quantity"]) : null;
+        $data["state"] = isset($order["state"]) ? trim($order["state"]) : null;
 
         foreach ($data as $datum) {
-            if(empty($datum)) {
+            if(empty($datum) && $datum != "0") {
                 $this->response("$datum is not defined", 403);
                 return;
             }

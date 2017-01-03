@@ -16,7 +16,14 @@ class Order extends CI_Model {
     }
 
     public function getOrder($id) {
-        $order = $this->db->query("SELECT * FROM OrderedItems WHERE ID = $id")->result_array();
+        $order = $this->db->query("SELECT 
+            OrderedItems.ID,
+            OrderedItems.ItemID,
+            OrderedItems.Quantity,
+            OrderedItems.Date,
+            OrderedItems.IsDelivered,
+            Items.Name as ItemName
+            FROM OrderedItems JOIN Items ON Items.ID = OrderedItems.ItemID WHERE OrderedItems.ID = $id")->result_array();
 
         return isset($order[0]) ? $order[0] : null;
     }
@@ -27,6 +34,7 @@ class Order extends CI_Model {
             OrderedItems.ItemID,
             OrderedItems.Quantity,
             OrderedItems.Date,
+            OrderedItems.IsDelivered,
             Items.Name as ItemName
             FROM OrderedItems JOIN Items ON Items.ID = OrderedItems.ItemID")->result_array();
 
@@ -51,8 +59,9 @@ class Order extends CI_Model {
         $id = $data["ID"];
         $item = $data["item"];
         $quantity = $data["quantity"];
+        $state = $data["state"];
 
-        $res = $this->db->query("UPDATE OrderedItems SET ItemID = $item, Quantity = $quantity WHERE ID = $id");
+        $res = $this->db->query("UPDATE OrderedItems SET ItemID = $item, Quantity = $quantity, IsDelivered = '$state' WHERE ID = $id");
 
         return $res ? $this->getOrder($id) : null;
     }

@@ -2,8 +2,8 @@
  * Created by Sargis on 8/22/2016.
  */
 angular.module("myApp.controllers")
-    .controller("ItemCtrl", ["$rootScope", "$scope", "ordersSvc", "itemsSvc","categoriesSvc", "$q", function ($rootScope, $scope, ordersSvc, itemsSvc, categoriesSvc, $q) {
-        var state, itemID;
+    .controller("OrderCtrl", ["$rootScope", "$scope", "ordersSvc", "itemsSvc","categoriesSvc", "$q", "$routeParams", function ($rootScope, $scope, ordersSvc, itemsSvc, categoriesSvc, $q, $routeParams) {
+        var state;
 
         $scope.editMode = false;
         $scope.ready = false;
@@ -17,15 +17,16 @@ angular.module("myApp.controllers")
             $scope.items = result[2].data || [];
 
             setOrder(order);
+
+            $scope.ready = true;
         });
 
         $scope.editOrder = function () {
-            $scope.new.name = $scope.name;
-            $scope.new.category = $scope.categoryID;
-            $scope.new.firm = $scope.firmID;
-            $scope.new.measurementUnit = $scope.measurementUnit;
-            $scope.new.salePrice = $scope.salePrice;
             $scope.new.quantity = $scope.quantity;
+            $scope.new.date = $scope.date;
+            $scope.new.categoryID = $scope.categoryID;
+            $scope.new.item = $scope.itemID;
+            $scope.new.state = state;
 
             $scope.editMode = true;
         };
@@ -44,22 +45,30 @@ angular.module("myApp.controllers")
             data.id = $routeParams.id;
 
             ordersSvc.editOrder(data).then(function (result) {
-                var item = result.data;
+                var order = result.data;
 
-                setOrder(item);
+                setOrder(order);
 
                 $scope.cancelEditing();
+            }, function (result) {
+                console.log(result);
             });
         };
 
         function setOrder(order) {
             $scope.quantity = order.Quantity;
-            $scope.categoryID = order.CategoryID;
             $scope.date = order.Date;
             $scope.item = order.ItemName;
-            $scope.state = order.IsDelivered ? "Delivered" : "Not delivered";
+            $scope.state = +order.IsDelivered ? "Delivered" : "Not delivered";
+            $scope.itemID = order.ItemID;
 
             state = order.IsDelivered;
-            itemID = order.ItemID;
+
+            $scope.items.some(function (item) {
+                if(item.ID == $scope.itemID) {
+                    $scope.categoryID = item.CategoryID;
+                    return true;
+                }
+            });
         }
     }]);

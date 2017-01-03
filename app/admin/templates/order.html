@@ -1,14 +1,13 @@
 <section ng-if="ready">
     <h2>
-        <label>
-            Date: <span ng-bind="date" ng-if="!editMode"></span>
-            <input ng-model="new.date" type="text" ng-if="editMode" />
+        <label ng-if="!editMode">
+            Date: <span ng-bind="date"></span>
         </label>
     </h2>
     <h2 ng-if="editMode">
         <label>
             Category:
-            <select ng-model="new.category" ng-if="editMode">
+            <select ng-model="new.categoryID" ng-if="editMode">
                 <option ng-repeat="category in categories" value="{{category.ID}}" ng-bind="category.Category"></option>
             </select>
         </label>
@@ -17,7 +16,7 @@
         <label>
             Item: <span ng-bind="item" ng-if="!editMode"></span>
             <select ng-model="new.item" ng-if="editMode">
-                <option ng-repeat="firm in firms" value="{{firm.ID}}" ng-bind="firm.Name"></option>
+                <option ng-repeat="item in items | filterByCategory:new.categoryID" value="{{item.ID}}" ng-bind="item.Name"></option>
             </select>
         </label>
     </h2>
@@ -30,7 +29,10 @@
     <h2>
         <label>
             State: <span ng-bind="state" ng-if="!editMode"></span>
-            <input ng-model="new.state" type="text" ng-if="editMode" />
+            <select ng-model="new.state" ng-if="editMode">
+                <option value="0">Not Delivered</option>
+                <option value="1">Delivered</option>
+            </select>
         </label>
     </h2>
     <button class="btn btn-primary" ng-click="editOrder()" ng-if="!editMode">Edit</button>

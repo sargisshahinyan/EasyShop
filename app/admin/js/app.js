@@ -40,9 +40,13 @@ config(['$routeProvider', "$httpProvider", function($routeProvider, $httpProvide
     controller:"CategoriesCtrl",
     resolve: resolve
   }).when('/orders', {
-    templateUrl: "admin/templates/orders.html",
-    controller:"OrdersCtrl",
-    resolve: resolve
+      templateUrl: "admin/templates/orders.html",
+      controller:"OrdersCtrl",
+      resolve: resolve
+  }).when('/orders/:id', {
+      templateUrl: "admin/templates/order.html",
+      controller:"OrdersCtrl",
+      resolve: resolve
   }).when('/category/:id', {
     templateUrl: "admin/templates/category.html",
     controller:"CategoryCtrl",

@@ -15,14 +15,16 @@
                 </select>
             </label><br/><br/>
             <label>Quantity: <input ng-model="quantity" type="number"/></label><br/><br/>
-            <button  class="btn btn-primary" ng-click="add()">Create</button>
+            <button  class="btn btn-primary" ng-click="add()">Add</button>
         </div>
     </div>
     <div class="row">
         <ul class="list-group categories">
             <li class="list-group-item" ng-repeat="item in list" id="item.ID">
                 <a href="#/order/{{item.ID}}">
-                    <span ng-bind="item.Name"></span>
+                    <span ng-bind="item.ItemName"></span>
+                    <span>&nbsp&nbsp&nbsp</span>
+                    <span ng-bind="item.Date"></span>
                 </a>
                 <span class="category-delete-button">
                     <button class="btn btn-default" type="button" ng-click="delete(item.ID)">X</button>

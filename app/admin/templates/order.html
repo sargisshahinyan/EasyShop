@@ -1,0 +1,40 @@
+<section ng-if="ready">
+    <h2>
+        <label>
+            Date: <span ng-bind="date" ng-if="!editMode"></span>
+            <input ng-model="new.date" type="text" ng-if="editMode" />
+        </label>
+    </h2>
+    <h2 ng-if="editMode">
+        <label>
+            Category:
+            <select ng-model="new.category" ng-if="editMode">
+                <option ng-repeat="category in categories" value="{{category.ID}}" ng-bind="category.Category"></option>
+            </select>
+        </label>
+    </h2>
+    <h2>
+        <label>
+            Item: <span ng-bind="item" ng-if="!editMode"></span>
+            <select ng-model="new.item" ng-if="editMode">
+                <option ng-repeat="firm in firms" value="{{firm.ID}}" ng-bind="firm.Name"></option>
+            </select>
+        </label>
+    </h2>
+    <h2>
+        <label>
+            Quantity: <span ng-bind="quantity" ng-if="!editMode"></span>
+            <input ng-model="new.quantity" type="text" ng-if="editMode" />
+        </label>
+    </h2>
+    <h2>
+        <label>
+            State: <span ng-bind="state" ng-if="!editMode"></span>
+            <input ng-model="new.state" type="text" ng-if="editMode" />
+        </label>
+    </h2>
+    <button class="btn btn-primary" ng-click="editOrder()" ng-if="!editMode">Edit</button>
+    <button class="btn btn-danger" ng-click="deleteOrder()" ng-if="!editMode">Delete</button>
+    <button class="btn btn-danger" ng-click="cancelEditing()" ng-if="editMode">Cancel</button>
+    <button class="btn btn-success" ng-click="submitEditing(new)" ng-if="editMode">Done</button>
+</section>

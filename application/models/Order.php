@@ -22,7 +22,13 @@ class Order extends CI_Model {
     }
 
     public function getOrders() {
-        $order = $this->db->query("SELECT * FROM OrderedItems")->result_array();
+        $order = $this->db->query("SELECT 
+            OrderedItems.ID,
+            OrderedItems.ItemID,
+            OrderedItems.Quantity,
+            OrderedItems.Date,
+            Items.Name as ItemName
+            FROM OrderedItems JOIN Items ON Items.ID = OrderedItems.ItemID")->result_array();
 
         return isset($order[0]) ? $order : null;
     }

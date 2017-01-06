@@ -2,7 +2,7 @@
  * Created by Sargis on 8/22/2016.
  */
 angular.module("myApp.controllers")
-    .controller("ItemCtrl", ["$scope", "$rootScope", "$routeParams", "$q", "$location", "itemsSvc", "categoriesSvc", "firmsSvc", function ($scope, $rootScope, $routeParams, $q, $location, itemsSvc, categoriesSvc, firmsSvc) {
+    .controller("ItemCtrl", ["$scope", "$rootScope", "$routeParams", "$q", "$location", "itemsSvc", "categoriesSvc", "firmsSvc", "ordersSvc", function ($scope, $rootScope, $routeParams, $q, $location, itemsSvc, categoriesSvc, firmsSvc, ordersSvc) {
         $scope.editMode = false;
 
         $scope.new = {};
@@ -10,7 +10,17 @@ angular.module("myApp.controllers")
         itemsSvc.getItem($routeParams.id).then(function (result) {
             var item = result.data;
 
-            setItem(item);
+            ordersSvc.getOrderByItem(item.ID).then(function (result) {
+                var orders = result.data;
+
+                $scope.order = 0;
+
+                orders.forEach(function (order) {
+                    $scope.order += parseFloat(order.Quantity);
+                });
+
+                setItem(item);
+            });
         });
 
         categoriesSvc.getCategories().then(function (result) {

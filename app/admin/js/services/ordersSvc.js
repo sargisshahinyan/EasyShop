@@ -2,7 +2,7 @@
  * Created by Sargis on 8/19/2016.
  */
 angular.module("myApp.services")
-    .factory("ordersSvc", ["$http", "$rootScope", function ($http, $rootScope) {
+    .factory("ordersSvc", ["$http", function ($http) {
         return {
             getOrder: function (id) {
                 return $http({
@@ -14,6 +14,16 @@ angular.module("myApp.services")
                 return $http({
                     url: "/store/orders/",
                     method: "GET"
+                });
+            },
+            getOrderByItem:function (itemID) {
+                return $http({
+                    method: "GET",
+                    url:"/store/orders/",
+                    params: {
+                        "itemID": itemID,
+                        "state" : 0
+                    }
                 });
             },
             addOrder: function (order) {

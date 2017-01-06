@@ -28,7 +28,23 @@ class Order extends CI_Model {
         return isset($order[0]) ? $order[0] : null;
     }
 
-    public function getOrders() {
+    public function getOrders($page = null, $data = null) {
+        $condition = "";
+
+        //select by items
+        $condition .= isset($data["itemID"])
+            ? (strlen($condition) > 0 ? " AND " : "") . " OrderedItems.ItemID = " . $data["itemID"]
+            : "";
+
+        //select by state
+        $condition .= isset($data["state"])
+            ? (strlen($condition) > 0 ? " AND " : "") . " OrderedItems.IsDelivered = " . $data["state"]
+            : "";
+
+        if (strlen($condition) > 0) {
+            $condition = "WHERE " . $condition;
+        }
+
         $order = $this->db->query("SELECT 
             OrderedItems.ID,
             OrderedItems.ItemID,
@@ -36,7 +52,8 @@ class Order extends CI_Model {
             OrderedItems.Date,
             OrderedItems.IsDelivered,
             Items.Name as ItemName
-            FROM OrderedItems JOIN Items ON Items.ID = OrderedItems.ItemID")->result_array();
+            FROM OrderedItems JOIN Items ON Items.ID = OrderedItems.ItemID $condition
+            ORDER BY OrderedItems.Date DESC")->result_array();
 
         return isset($order[0]) ? $order : null;
     }

@@ -18,7 +18,8 @@ class Orders extends REST_Controller {
 
     public function index_get($id = null) {
         if(empty($id)) {
-            $orders = $this->order->getOrders();
+            $getData = $this->get();
+            $orders = $this->order->getOrders(null, $getData);
 
             if(empty($orders)) {
                 $orders = array();

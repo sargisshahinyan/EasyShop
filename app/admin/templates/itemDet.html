@@ -35,7 +35,9 @@
 </h2>
 <h2>
     <label>
-        Quantity: <span ng-bind="quantity" ng-if="!editMode"></span>
+        Quantity:
+        <span ng-bind="quantity" ng-if="!editMode"></span>
+        <span ng-if="!editMode && order">({{order}})</span>
         <input ng-model="new.quantity" type="text" ng-if="editMode" />
     </label>
 </h2>
